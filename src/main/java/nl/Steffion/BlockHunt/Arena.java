@@ -5,8 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import nl.Steffion.BlockHunt.Serializables.LocationSerializable;
-
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
@@ -17,8 +15,8 @@ import org.bukkit.scoreboard.Scoreboard;
 @SerializableAs("BlockHuntArena")
 public class Arena implements ConfigurationSerializable {
 	public String arenaName;
-	public LocationSerializable pos1;
-	public LocationSerializable pos2;
+	public org.bukkit.Location pos1;
+	public org.bukkit.Location pos2;
 	public int maxPlayers;
 	public int minPlayers;
 	public int amountSeekersOnStart;
@@ -33,10 +31,10 @@ public class Arena implements ConfigurationSerializable {
 	public boolean seekersTakeFallDamage;
 	public boolean hidersTakeFallDamage;
 	public ArrayList<ItemStack> disguiseBlocks;
-	public LocationSerializable lobbyWarp;
-	public LocationSerializable hidersWarp;
-	public LocationSerializable seekersWarp;
-	public LocationSerializable spawnWarp;
+	public org.bukkit.Location lobbyWarp;
+	public org.bukkit.Location hidersWarp;
+	public org.bukkit.Location seekersWarp;
+	public org.bukkit.Location spawnWarp;
 	public List<String> seekersWinCommands;
 	public List<String> hidersWinCommands;
 	public List<String> allowedCommands;
@@ -50,10 +48,10 @@ public class Arena implements ConfigurationSerializable {
 	public List<Player> seekers;
 	public Scoreboard scoreboard;
 
-	public Arena(String arenaName, LocationSerializable pos1, LocationSerializable pos2, int maxPlayers, int minPlayers, int amountSeekersOnStart,
+	public Arena(String arenaName, org.bukkit.Location pos1, org.bukkit.Location pos2, int maxPlayers, int minPlayers, int amountSeekersOnStart,
 			int timeInLobbyUntilStart, int waitingTimeSeeker, int gameTime, int timeUntilHidersSword, int blockAnnouncerTime,
 			boolean seekersCanHurtSeekers, boolean hidersCanHurtSeekers, boolean hidersCanHurtHiders, boolean seekersTakeFallDamage, boolean hidersTakeFallDamage,
-			ArrayList<ItemStack> disguiseBlocks, LocationSerializable lobbyWarp, LocationSerializable hidersWarp, LocationSerializable seekersWarp, LocationSerializable spawnWarp,
+			ArrayList<ItemStack> disguiseBlocks, org.bukkit.Location lobbyWarp, org.bukkit.Location hidersWarp, org.bukkit.Location seekersWarp, org.bukkit.Location spawnWarp,
 			List<String> seekersWinCommands, List<String> hidersWinCommands, List<String> allowedCommands, int seekersTokenWin, int hidersTokenWin, int killTokens,
 			List<Player> playersInArena, ArenaState gameState, int timer, List<Player> seekers, Scoreboard scoreboard) {
 		this.arenaName = arenaName;
@@ -143,13 +141,13 @@ public class Arena implements ConfigurationSerializable {
 
 	@SuppressWarnings("unchecked")
 	public static Arena deserialize(Map<String, Object> map) {
-		LocationSerializable loc = new LocationSerializable(Bukkit.getWorld("world"), 0, 0, 0, 0, 0);
-		return new Arena((String) map.getOrDefault("arenaName", "UNKNOWN_NAME"), (LocationSerializable) map.getOrDefault("pos1", loc), (LocationSerializable) map.getOrDefault( "pos2", loc),
+		org.bukkit.Location loc = new org.bukkit.Location(Bukkit.getWorld("world"), 0, 0, 0, 0, 0);
+		return new Arena((String) map.getOrDefault("arenaName", "UNKNOWN_NAME"), (org.bukkit.Location) map.getOrDefault("pos1", loc), (org.bukkit.Location) map.getOrDefault( "pos2", loc),
 				(Integer) map.getOrDefault( "maxPlayers", 12), (Integer) map.getOrDefault( "minPlayers", 3), (Integer) map.getOrDefault( "amountSeekersOnStart", 1), (Integer) map.getOrDefault( "timeInLobbyUntilStart", 90),
 				(Integer) map.getOrDefault( "waitingTimeSeeker", 20), (Integer) map.getOrDefault( "gameTime", 200), (Integer) map.getOrDefault( "timeUntilHidersSword", 30),(Integer) map.getOrDefault( "blockAnnouncerTime", 45),
 				(Boolean) map.getOrDefault( "seekersCanHurtSeekers", false),(Boolean) map.getOrDefault( "hidersCanHurtSeekers", false),(Boolean) map.getOrDefault( "hidersCanHurtHiders", false),(Boolean) map.getOrDefault( "seekersTakeFallDamage", false),(Boolean) map.getOrDefault( "hidersTakeFallDamage", false),
-				(ArrayList<ItemStack>) map.getOrDefault( "disguiseBlocks", new ArrayList<ItemStack>()),(LocationSerializable) map.getOrDefault( "lobbyWarp", loc), (LocationSerializable) map.getOrDefault( "hidersWarp", loc), (LocationSerializable) map.getOrDefault( "seekersWarp", loc),
-				(LocationSerializable) map.getOrDefault( "spawnWarp", loc), (ArrayList<String>) map.getOrDefault( "seekersWinCommands", new ArrayList<String>()),
+				(ArrayList<ItemStack>) map.getOrDefault( "disguiseBlocks", new ArrayList<ItemStack>()),(org.bukkit.Location) map.getOrDefault( "lobbyWarp", loc), (org.bukkit.Location) map.getOrDefault( "hidersWarp", loc), (org.bukkit.Location) map.getOrDefault( "seekersWarp", loc),
+				(org.bukkit.Location) map.getOrDefault( "spawnWarp", loc), (ArrayList<String>) map.getOrDefault( "seekersWinCommands", new ArrayList<String>()),
 				(ArrayList<String>) map.getOrDefault("hidersWinCommands", new ArrayList<String>()), (ArrayList<String>) map.getOrDefault( "allowedCommands", new ArrayList<String>()),
 				(Integer) map.getOrDefault( "seekersTokenWin", 10), (Integer) map.getOrDefault( "hidersTokenWin", 50), (Integer) map.getOrDefault( "killTokens", 8), new ArrayList<>(),
 				ArenaState.WAITING, 0, new ArrayList<>(), Bukkit.getScoreboardManager().getNewScoreboard());

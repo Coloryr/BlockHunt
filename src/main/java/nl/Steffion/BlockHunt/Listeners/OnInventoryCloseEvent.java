@@ -21,8 +21,9 @@ public class OnInventoryCloseEvent implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void onInventoryCloseEvent(InventoryCloseEvent event) {
 		Inventory inv = event.getInventory();
+		String name = event.getView().getTitle();
 		if (inv.getType().equals(InventoryType.CHEST)) {
-			if (inv.getName().contains("DisguiseBlocks")) {
+			if (name.contains("DisguiseBlocks")) {
 				String arenaname = inv.getItem(0).getItemMeta().getDisplayName().replaceAll(MessageManager.replaceAll("%NDisguiseBlocks of arena: %A"), "");
 
 				Arena arena = null;

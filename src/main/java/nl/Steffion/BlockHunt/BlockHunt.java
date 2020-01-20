@@ -39,7 +39,6 @@ import nl.Steffion.BlockHunt.Managers.CommandManager;
 import nl.Steffion.BlockHunt.Managers.ConfigManager;
 import nl.Steffion.BlockHunt.Managers.MessageManager;
 import nl.Steffion.BlockHunt.Managers.PermissionsManager;
-import nl.Steffion.BlockHunt.Serializables.LocationSerializable;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.WordUtils;
@@ -71,6 +70,25 @@ public class BlockHunt extends JavaPlugin implements Listener {
 	 *
 	 * @author Steffion
 	 */
+
+
+    public final static List<Material> SIGN = new ArrayList<Material>()
+    {
+        {
+            this.add(Material.SPRUCE_SIGN);
+            this.add(Material.SPRUCE_WALL_SIGN);
+            this.add(Material.ACACIA_SIGN);
+            this.add(Material.ACACIA_WALL_SIGN);
+            this.add(Material.BIRCH_SIGN);
+            this.add(Material.BIRCH_WALL_SIGN);
+            this.add(Material.DARK_OAK_SIGN);
+            this.add(Material.DARK_OAK_WALL_SIGN);
+            this.add(Material.JUNGLE_SIGN);
+            this.add(Material.JUNGLE_WALL_SIGN);
+            this.add(Material.OAK_SIGN);
+            this.add(Material.OAK_WALL_SIGN);
+        }
+    };
 
 	public static PluginDescriptionFile pdfFile;
 	public static BlockHunt plugin;
@@ -132,7 +150,7 @@ public class BlockHunt extends JavaPlugin implements Listener {
 		getServer().getPluginManager().registerEvents(new OnPlayerQuitEvent(), this);
 		getServer().getPluginManager().registerEvents(new OnSignChangeEvent(), this);
 
-		ConfigurationSerialization.registerClass(LocationSerializable.class, "BlockHuntLocation");
+		ConfigurationSerialization.registerClass(org.bukkit.Location.class, "BlockHuntLocation");
 		ConfigurationSerialization.registerClass(Arena.class, "BlockHuntArena");
 
 		pdfFile = getDescription();
