@@ -28,7 +28,7 @@ import java.util.List;
 
 public class OnPlayerInteractEvent implements Listener {
 
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	@EventHandler
 	public void onPlayerInteractEvent(PlayerInteractEvent event) {
 		Player player = event.getPlayer();
 		Block block = event.getClickedBlock();
@@ -64,7 +64,7 @@ public class OnPlayerInteractEvent implements Listener {
 			}
 		}
 
-		if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
+		if (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.LEFT_CLICK_BLOCK) {
 			if (event.getClickedBlock() != null) {
 				if (BlockHunt.SIGN.contains(event.getClickedBlock().getType())) {
 					if (SignsHandler.isSign(event.getClickedBlock().getLocation())) {

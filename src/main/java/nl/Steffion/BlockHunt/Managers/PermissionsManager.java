@@ -1,5 +1,6 @@
 package nl.Steffion.BlockHunt.Managers;
 
+import nl.Steffion.BlockHunt.BlockHunt;
 import nl.Steffion.BlockHunt.ConfigC;
 import nl.Steffion.BlockHunt.PermissionsC;
 import nl.Steffion.BlockHunt.PermissionsC.PType;
@@ -39,24 +40,34 @@ public class PermissionsManager {
 			return true;
 		}
 
-		if (type == PType.ALL) {
-			return true;
-		} else if (type == PType.OP) {
-			if (player.isOp()) {
+		BlockHunt.plugin.getLogger().info(perm.type.name() + player.hasPermission(PermissionsC.main + "player"));
+
+		switch (type)
+		{
+			case ADMIN:
+				if (player.hasPermission(PermissionsC.main + "admin")) {
+					BlockHunt.plugin.getLogger().info("admin");
+					return true;
+				}
+				break;
+			case PLAYER:
+				if (player.hasPermission(PermissionsC.main + "player")) {
+					BlockHunt.plugin.getLogger().info("player");
+					return true;
+				}
+				break;
+			case MODERATOR:
+				if (player.hasPermission(PermissionsC.main + "moderator")) {
+					return true;
+				}
+				break;
+			case ALL:
 				return true;
-			}
-		} else if (type == PType.ADMIN) {
-			if (player.hasPermission(PermissionsC.main + "admin")) {
-				return true;
-			}
-		} else if (type == PType.MODERATOR) {
-			if (player.hasPermission(PermissionsC.main + "moderator")) {
-				return true;
-			}
-		} else if (type == PType.PLAYER) {
-			if (player.hasPermission(PermissionsC.main + "player")) {
-				return true;
-			}
+			case OP:
+				if (player.isOp()) {
+					return true;
+				}
+				break;
 		}
 
 		if (player.hasPermission("*")) {
