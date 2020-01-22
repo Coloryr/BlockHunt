@@ -40,19 +40,19 @@ public class PermissionsManager {
 			return true;
 		}
 
-		BlockHunt.plugin.getLogger().info(perm.type.name() + player.hasPermission(PermissionsC.main + "player"));
+		//BlockHunt.plugin.getLogger().info(perm.type.name() + player.hasPermission(PermissionsC.main + "player"));
 
 		switch (type)
 		{
 			case ADMIN:
 				if (player.hasPermission(PermissionsC.main + "admin")) {
-					BlockHunt.plugin.getLogger().info("admin");
+					//BlockHunt.plugin.getLogger().info("admin");
 					return true;
 				}
 				break;
 			case PLAYER:
 				if (player.hasPermission(PermissionsC.main + "player")) {
-					BlockHunt.plugin.getLogger().info("player");
+					//BlockHunt.plugin.getLogger().info("player");
 					return true;
 				}
 				break;
